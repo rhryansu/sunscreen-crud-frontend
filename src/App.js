@@ -2,7 +2,7 @@ import './App.css';
 import ResponsiveAppBar from './components/responsiveAppBar.component';
 import CustomizedTables from './components/customizedTables.component';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+
 
 function App() {
 
@@ -10,7 +10,7 @@ function App() {
 
 
   useEffect(() => {
-    fetch('http://192.168.1.103:8080/sunscreen/getAll')
+    fetch('http://localhost:8080/sunscreen/getAll')
       .then(res => res.json())
       .then(data => setData(data));
   }, []);
@@ -23,6 +23,7 @@ function App() {
       <CustomizedTables data={data}/>
     </div>
   );
+
 }
 
 export default App;

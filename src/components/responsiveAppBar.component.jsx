@@ -12,9 +12,9 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-const pages = [{'href': "/", 'text': "Products"}, {'href': "/src/routes/add.route.jsx", 'text': "Add"}, {'href': '/src/routes/edit.route.jsx', 'text': "Edit"}, {'href': '/src/routes/delete.route.jsx', 'text': "Delete"}];
+const pages = ['Sunscreens', 'Add', 'Delete'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const ResponsiveAppBar = () => {
@@ -115,13 +115,17 @@ const ResponsiveAppBar = () => {
             LOGO
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Link
-                href={page.href}
+            {pages.map((page) => ( 
+              page === 'Sunscreens' ? ( 
+                <Button key={page} component={Link} to="/" sx={{ mr: 0, color: 'white' }}>{page}</Button> ) : (
+              <Button
+                key={page}
+                component={Link} to={`/${page}`}
+                sx={{ my: 0, color: 'white' }}
               >
-                {page.text}
-              </Link>
-            ))}
+                {page}
+              </Button>
+            )))}
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
