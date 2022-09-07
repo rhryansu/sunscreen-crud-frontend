@@ -40,7 +40,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 export default function CustomizedTables({data}) {
 
   const rows = data;
-  console.log('inner', data);
   
   return (
     <TableContainer component={Paper}>

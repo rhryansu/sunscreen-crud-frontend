@@ -2,9 +2,12 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import '../styles/formPropsTextFields.style.css'
-import Button from '@mui/material/Button';
+import SubmitButton from './submitButton.component';
 
 export default function FormPropsTextFields() {
+
+  const [data, setData] = React.useState({});
+
   return (
     <Box 
       component="form"
@@ -19,19 +22,6 @@ export default function FormPropsTextFields() {
       autoComplete="off"
     >
       <div sx={{mx: 'auto', my: 'auto'}}>
-      <TextField
-        id="sunscreen-id"
-        label="ID"
-        // FIXME: `defaultValue` should be a number that inherits from the last ID in the database`
-        defaultValue=""
-        InputProps={{
-          readOnly: true,
-        }}
-        InputLabelProps={{
-          shrink: false,
-        }}
-        variant="standard"
-      />
         <TextField
           required
           id="sunscreen-name"
@@ -41,8 +31,10 @@ export default function FormPropsTextFields() {
             shrink: false,
           }}
           variant="standard"
-        />
+          onChange={(e) => setData({...data, name: e.target.value})}
+          />
         <TextField
+          required
           id="sunscreen-price"
           label="Price(A$)"
           type="number"
@@ -50,8 +42,10 @@ export default function FormPropsTextFields() {
             shrink: false,
           }}
           variant="standard"
+          onChange={(e) => setData({...data, price: e.target.value})}
         />
         <TextField
+          required
           id="sunscreen-spf"
           label="SPF"
           type="number"
@@ -59,6 +53,7 @@ export default function FormPropsTextFields() {
             shrink: false,
           }}
           variant="standard"
+          onChange={(e) => setData({...data, spf: e.target.value})}
         />
         <TextField
           required
@@ -69,6 +64,7 @@ export default function FormPropsTextFields() {
             shrink: false,
           }}
           variant="standard"
+          onChange={(e) => setData({...data, description: e.target.value})}
         />
         <TextField
           required
@@ -79,6 +75,7 @@ export default function FormPropsTextFields() {
             shrink: false,
           }}
           variant="standard"
+          onChange={(e) => setData({...data, imageLink: e.target.value})}
         />
         <TextField
           required
@@ -89,9 +86,10 @@ export default function FormPropsTextFields() {
             shrink: false,
           }}
           variant="standard"
+          onChange={(e) => setData({...data, reviewLink: e.target.value})}
         />
       </div>
-          <Button variant="contained" color="primary" sx={{my: 'auto', mx: 'auto', py: '0.3vw', px: '2vw'}}>Submit</Button>
+          <SubmitButton data={data}/>
     </Box>
   );
 }
