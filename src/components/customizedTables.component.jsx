@@ -29,21 +29,27 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-// const rows = [
-//   createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-//   createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-//   createData('Eclair', 262, 16.0, 24, 6.0),
-//   createData('Cupcake', 305, 3.7, 67, 4.3),
-//   createData('Gingerbread', 356, 16.0, 49, 3.9),
-// ];
-
-export default function CustomizedTables({data}) {
+export default function CustomizedTables({ data }) {
 
   const rows = data;
-  
+
+  function deleteById(id) {
+
+    fetch('http://localhost:8080/sunscreen/delete/' + id, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .catch(err => console.log(err));
+    //FIXME: this is a force-refresh function using javascript built-in api. Refreshing page in a better practice is to use react hooks 'useEffect' to re-render the component.
+    window.location.reload();
+
+  }
+
   return (
     <TableContainer component={Paper}>
-      <Table stickyHeader sx={{ mx: 'auto', my: 25, width: 1000}} aria-label="customized table">
+      <Table stickyHeader sx={{ mx: 'auto', my: 25, width: 1000 }} aria-label="customized table">
         <TableHead>
           <TableRow>
             <StyledTableCell>ID</StyledTableCell>
@@ -53,6 +59,7 @@ export default function CustomizedTables({data}) {
             <StyledTableCell align="right">Description</StyledTableCell>
             <StyledTableCell align="right">ImageLink</StyledTableCell>
             <StyledTableCell align="right">ReviewLink</StyledTableCell>
+            <StyledTableCell align="right">Action</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -67,11 +74,11 @@ export default function CustomizedTables({data}) {
               <StyledTableCell align="right">{row.description}</StyledTableCell>
               <StyledTableCell align="right">{row.imageLink}</StyledTableCell>
               <StyledTableCell align="right">{row.reviewLink}</StyledTableCell>
+              <td><button onClick={() => deleteById(row.id)}>Delete</button></td>
             </StyledTableRow>
           ))}
         </TableBody>
       </Table>
-      
     </TableContainer>
   );
 }

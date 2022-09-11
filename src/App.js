@@ -8,13 +8,12 @@ function App() {
 
   const [data, setData] = useState([]);
 
-
   useEffect(() => {
     fetch('http://localhost:8080/sunscreen/getAll')
       .then(res => res.json())
       .then(data => setData(data));
   }, []);
-
+  
 
   return (
     <div className="App">
