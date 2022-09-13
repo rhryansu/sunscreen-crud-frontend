@@ -49,7 +49,7 @@ export default function CustomizedTables({ data }) {
 
   return (
     <TableContainer component={Paper}>
-      <Table stickyHeader sx={{ mx: 'auto', my: 25, width: 1000 }} aria-label="customized table">
+      <Table stickyHeader sx={{ mx: 'auto', my: 10, width: 1000 }} aria-label="customized table">
         <TableHead>
           <TableRow>
             <StyledTableCell>ID</StyledTableCell>
