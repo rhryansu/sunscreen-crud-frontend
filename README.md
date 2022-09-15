@@ -46,7 +46,7 @@
 - [x] Basic functionality 
 - [x] Route
 - [x] Delete on delete button
-- [ ] Real-time Search
+- [x] Real-time Search
 
 ## License
 
